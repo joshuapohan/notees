@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">notees</string>
+    <string name="list">list</string>
+    <string name="create">create</string>
+</resources>
