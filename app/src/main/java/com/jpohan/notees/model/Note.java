@@ -5,7 +5,7 @@ import java.util.Date;
 public class Note {
     private String title;
     private String content;
-    private Date createdAt;
+    private String uuid;
 
     public Note() {
     }
@@ -29,5 +29,13 @@ public class Note {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 }
