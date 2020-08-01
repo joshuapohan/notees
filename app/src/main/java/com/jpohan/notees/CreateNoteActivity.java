@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +29,7 @@ public class CreateNoteActivity extends AppCompatActivity {
         setContentView(R.layout.create_note_view);
         title = findViewById(R.id.edit_title);
         content = findViewById(R.id.note_content);
-        saveButton = findViewById(R.id.create_note_btn);
+        saveButton = findViewById(R.id.update_note_button);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,7 +61,7 @@ public class CreateNoteActivity extends AppCompatActivity {
         long rowId = db.insert(NoteContract.NoteContractEntry.TABLE_NAME, null, values);
         title.getText().clear();
         content.getText().clear();
-        Snackbar succcess = Snackbar.make(view, "Note Created", Snackbar.LENGTH_SHORT);
+        Snackbar succcess = Snackbar.make(view, "Note Created", Snackbar.LENGTH_LONG);
         succcess.show();
     }
 }
