@@ -3,10 +3,12 @@ package com.jpohan.notees;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +39,8 @@ public class CreateNoteActivity extends AppCompatActivity {
             }
         });
         db = DatabaseConnectionHelper.getInstance().getConnection();
+        TextView toolbarTitle = findViewById(R.id.toolbar_text_new);
+        toolbarTitle.setPaintFlags(toolbarTitle.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
     }
 
     public void goToCreate(View view) {
