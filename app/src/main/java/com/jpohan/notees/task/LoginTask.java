@@ -1,6 +1,7 @@
 package com.jpohan.notees.task;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.json.JSONObject;
 
@@ -68,7 +69,9 @@ public class LoginTask extends AsyncTask<Void, Void, String> {
         }
     }
 
-    public LoginTask(){
+    public LoginTask(String username, String password){
+        this.username = username;
+        this.password = password;
     }
 
     @Override
@@ -80,12 +83,12 @@ public class LoginTask extends AsyncTask<Void, Void, String> {
             param.put("password", password);
             RequestBody body = RequestBody.create(JSON, param.toString());
             Request request = new Request.Builder()
-                    .url("http://localhost:8080/login")
+                    .url("http://10.0.2.2:8080/login")
                     .header("Connection", "close")
                     .post(body)
                     .build();
             Response response = client.newCall(request).execute();
-            return response.body().string();
+            return response.header("Authorization").toString();
         }
         catch (Exception e){
             e.printStackTrace();
@@ -95,5 +98,6 @@ public class LoginTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String result){
+        Log.d("Header", result);
     }
 }

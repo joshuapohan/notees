@@ -52,6 +52,11 @@ public class CreateNoteActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToLogin(View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
     public void createNote(View view){
         // Store in DB
         UUID uuid = UUID.randomUUID();

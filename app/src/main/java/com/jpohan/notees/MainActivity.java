@@ -60,6 +60,11 @@ public class MainActivity extends AppCompatActivity {
         // already in list view
     }
 
+    public void goToLogin(View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
