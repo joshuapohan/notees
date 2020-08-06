@@ -8,20 +8,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.jpohan.notees.contract.ActivityWithBottomToolbar;
 import com.jpohan.notees.database.DatabaseConnectionHelper;
 import com.jpohan.notees.model.contract.NoteContract;
 
 import java.util.UUID;
 
-public class CreateNoteActivity extends AppCompatActivity {
+public class CreateNoteActivity extends AppCompatActivity implements ActivityWithBottomToolbar {
     EditText title;
     EditText content;
+    ImageView mainIcon;
     SQLiteDatabase db;
     Button saveButton;
 
@@ -29,6 +32,10 @@ public class CreateNoteActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_note_view);
+        // update toolbar icon
+        mainIcon = findViewById(R.id.toolbar_icon_new);
+        mainIcon.setImageResource(R.drawable.ic_action_new_selected);
+
         title = findViewById(R.id.edit_title);
         content = findViewById(R.id.note_content);
         saveButton = findViewById(R.id.update_note_button);
@@ -39,8 +46,6 @@ public class CreateNoteActivity extends AppCompatActivity {
             }
         });
         db = DatabaseConnectionHelper.getInstance().getConnection();
-        TextView toolbarTitle = findViewById(R.id.toolbar_text_new);
-        toolbarTitle.setPaintFlags(toolbarTitle.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
     }
 
     public void goToCreate(View view) {
@@ -53,7 +58,7 @@ public class CreateNoteActivity extends AppCompatActivity {
     }
 
     public void goToLogin(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, AccountActivity.class);
         startActivity(intent);
     }
 

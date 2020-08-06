@@ -11,10 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.jpohan.notees.adapter.NoteListAdapter;
+import com.jpohan.notees.contract.ActivityWithBottomToolbar;
 import com.jpohan.notees.helper.NotesObjectHelper;
 import com.jpohan.notees.model.Note;
 
-public class ViewNoteActivity extends AppCompatActivity {
+public class ViewNoteActivity extends AppCompatActivity implements ActivityWithBottomToolbar {
     EditText title;
     EditText content;
     Button deleteButton;
@@ -67,7 +68,7 @@ public class ViewNoteActivity extends AppCompatActivity {
     }
 
     public void goToLogin(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, AccountActivity.class);
         startActivity(intent);
     }
 }

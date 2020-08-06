@@ -1,34 +1,37 @@
 package com.jpohan.notees;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.jpohan.notees.adapter.NoteListAdapter;
 import com.jpohan.notees.adapter.decoration.SpacesItemDecoration;
+import com.jpohan.notees.contract.ActivityWithBottomToolbar;
 import com.jpohan.notees.database.DatabaseConnectionHelper;
 import com.jpohan.notees.database.NotesTableHelper;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ActivityWithBottomToolbar {
     Toolbar toolbar;
     RecyclerView listView;
+    ImageView mainIcon;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_view);
+        mainIcon = findViewById(R.id.toolbar_icon_list);
+        mainIcon.setImageResource(R.drawable.ic_action_list_selected);
         toolbar = findViewById(R.id.toolbar);
         listView = findViewById(R.id.notes_list);
         final AppCompatActivity self = this;
@@ -47,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         init.run();
-        TextView toolbarTitle = findViewById(R.id.toolbar_text_list);
-        toolbarTitle.setPaintFlags(toolbarTitle.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
     }
 
     public void goToCreate(View view) {
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToLogin(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, AccountActivity.class);
         startActivity(intent);
     }
 

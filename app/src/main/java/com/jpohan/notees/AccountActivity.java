@@ -3,19 +3,25 @@ package com.jpohan.notees;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.jpohan.notees.contract.ActivityWithBottomToolbar;
 import com.jpohan.notees.task.LoginTask;
 
-public class LoginActivity extends AppCompatActivity {
+public class AccountActivity extends AppCompatActivity implements ActivityWithBottomToolbar {
+
+    ImageView mainIcon;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_view);
-
+        mainIcon = findViewById(R.id.toolbar_icon_account);
+        mainIcon.setImageResource(R.drawable.ic_action_account_selected);
     }
 
     public void goToCreate(View view) {

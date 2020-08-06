@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".ViewNoteActivity" android:theme="@style/noAnimTheme">
         </activity>
-        <activity android:name=".LoginActivity" android:theme="@style/noAnimTheme">
+        <activity android:name=".AccountActivity" android:theme="@style/noAnimTheme">
         </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
