@@ -1,6 +1,8 @@
 package com.jpohan.notees;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -50,6 +52,12 @@ public class MainActivity extends AppCompatActivity implements ActivityWithBotto
             }
         });
         init.run();
+        SharedPreferences sharedPref = getSharedPreferences("NOTEES_PREF", Context.MODE_PRIVATE);
+        String username = sharedPref.getString("Username", "");
+        if(username.length() > 0){
+            TextView title = findViewById(R.id.title_bar_text);
+            title.setText(username);
+        }
     }
 
     public void goToCreate(View view) {

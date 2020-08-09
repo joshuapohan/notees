@@ -1,7 +1,10 @@
 package com.jpohan.notees.task;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.jpohan.notees.contract.LoginListenerInterface;
 
 import org.json.JSONObject;
 
@@ -26,6 +29,7 @@ public class LoginTask extends AsyncTask<Void, Void, String> {
     public static final MediaType JSON  = MediaType.parse("application/json; charset=utf-8");
     private String username;
     private String password;
+    private LoginListenerInterface loginListener;
 
     private static OkHttpClient getUnsafeOkHttpClient() {
         try {
@@ -69,9 +73,10 @@ public class LoginTask extends AsyncTask<Void, Void, String> {
         }
     }
 
-    public LoginTask(String username, String password){
+    public LoginTask(String username, String password, LoginListenerInterface loginListener){
         this.username = username;
         this.password = password;
+        this.loginListener = loginListener;
     }
 
     @Override
@@ -98,6 +103,6 @@ public class LoginTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String result){
-        Log.d("Header", result);
+        loginListener.onSuccessfulLogin(username, password, result);
     }
 }
